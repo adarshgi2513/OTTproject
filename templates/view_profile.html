@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .user-details {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .change-password-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .navbar.fixed-top {
+    transition: background-color 0.3s ease;
+}
+body.fixed-navbar-padding {
+    padding-top: 56px; /* Adjust this value based on your navbar height */
+}
+        .navbar {
+    background: linear-gradient(to right, #ff0000, #6610F2);
+}
+.container {
+    margin-top: 20px;
+}
+
+h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.navbar-brand {
+    color: #fff !important; /* Change brand color to white */
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important; /* Change hover color to gold/yellow */
+}
+.movie-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+}
+
+.movie-details {
+    padding: 15px;
+}
+
+.movie-details h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #007BFF, #6610F2);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #0056b3, #4d0c8a);
+}
+body {
+        background-color: #f60707  ; /* Remove this line */
+         /* Light background color */
+            font-family: 'Arial', sans-serif; /* Choose a readable font */
+            margin: 0;
+            padding: 0;
+    }
+    .mt-3{
+        color: white !important;
+    }
+    p{
+        color: aliceblue !important;
+    }
+    .change-password-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.change-password-link a:hover {
+    background-color: #0056b3;
+}
+.profile-image-container {
+    width: 200px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the entire container */
+    border-radius: 150%;
+}
+
+.user-info {
+    color: aliceblue !important;
+    margin-top: 10px;
+}
+
+.no-image {
+    color: red; /* or any color you prefer */
+}
+
+.user-info p {
+    margin-bottom: 8px;
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'movie_list' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.imdb.com/">IMBD</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.youtube.com/">TRAILLERS</a>
+                    </li>
+                </ul>
+                <div class="logout">
+                    <a class="nav-link" href="{% url 'signout' %}">Logout</a>
+                </div>
+              
+        </div>
+        <div class="user-details">
+          
+            {% if user.image %}
+            <div class="profile-image-container">
+        <img src="{{ user.image.url }}" alt="Profile Image">
+            </div>
+    {% else %}
+        <p>No profile image available</p>
+    {% endif %}
+            <p><strong>Username:</strong> {{ user.user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p>Phone Number: {{ user.phone_number }}</p>
+            
+            <!-- Add more fields as needed -->
+        </div>
+    
+        <!-- Change Password Link -->
+        <div class="change-password-link">
+            <a href="{% url 'change_password' %}">Change Password</a>
+            <a  style="margin-top: 20PX;" href="{% url 'edit_user_profile' %}">Editprofile</a>
+        </div>
+
+    <!-- Add Bootstrap JS and Popper.js scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

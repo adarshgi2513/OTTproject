@@ -1,0 +1,60 @@
+<!-- search.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+</head>
+<body>
+    <h1>Movie Search</h1>
+    <div class="row">
+        <div class="col-sm-6 bg-light mt-4">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" id="search-input" placeholder="Search">
+            
+           </form>
+            <div id="results-body"></div>
+
+             
+            </tbody>
+        </table>
+    </div>
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#search-input').on('input',function(){
+            var query = $(this).val();
+            searchByName(query);
+        });
+        function searchByName(query){
+            $.ajax({
+                method:'GET',
+                url:'/search/',
+                data:{data:query},
+                success:function(data){
+                console.log(data)
+                   displayResults(data.data);
+                },
+            });
+        }
+        function displayResults(results) {
+    var resultsBody = $('#results-body');
+    resultsBody.empty();
+
+    if (results.length === 0) {
+        resultsBody.append('<tr><td colspan="4">NO Results found.</td></tr>');
+    } else {
+        results.forEach(function(result, index) {
+            resultsBody.append('<tr><td>' + (index + 1) + '</td><td>' + result.title + '</td><td>' + result.language + '</td><td>' + result.thumbnail + '</td></tr>');
+        });
+    }
+}
+
+
+    });
+    </script>
+ 
+</body>
+</html>

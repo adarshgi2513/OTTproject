@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #000;
+           
+            /* Add other styling properties as needed */
+            font-family: 'Arial', sans-serif; /* Specify your preferred font */
+            color: #fff; /* Text color */
+           
+    
+            /* Add other styling properties as needed */
+        }
+
+        .container {
+            margin-top: 50px; /* Adjusted the top margin for better spacing */
+        }
+
+        .navbar {
+            background-color: #141414; /* Navbar background color */
+        }
+
+        .navbar-brand {
+            color: #e50914; /* Netflix red color */
+            font-size: 1.5rem; /* Navbar brand font size */
+        }
+
+        .navbar-brand:hover {
+            color: #e50914; /* Navbar brand text color on hover */
+        }
+
+        h2 {
+            color: #e50914; /* Heading color */
+        }
+
+        .form-container {
+            background-color: #000; /* Form background color */
+            padding: 20px; /* Form padding */
+            border-radius: 10px; /* Form border radius */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Form box shadow */
+            margin-top: 20px; /* Adjusted the top margin for better spacing */
+        }
+
+        .btn-primary {
+            background-color: #e50914; /* Submit button color */
+            border-color: #e50914; /* Submit button border color */
+        }
+
+        .btn-primary:hover {
+            background-color: #ff0f25; /* Submit button color on hover */
+            border-color: #ff0f25; /* Submit button border color on hover */
+        }
+    
+    
+    </style>
+
+    <title>OTT Platform Registration</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="{% url 'signup' %}">Signup</a>
+            <a class="navbar-brand" href="{% url 'signin' %}">Signin</a>
+        </nav>
+
+        <!-- Registration Form -->
+        <div class="text-center mt-4">
+            <h2>SIGNUP</h2>
+        </div>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">{{ form.errors }}</div>
+        {% endif %}
+
+        {% if msg %}
+            <div class="alert alert-success">{{ msg }}</div>
+        {% endif %}
+
+        {% if form %}
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6 form-container">
+                    <form method="post" action="" id="contactForm">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.as_p }}
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS (optional, for some components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
